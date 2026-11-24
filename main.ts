@@ -1,11 +1,16 @@
-// Pickup Lines for Machines — make.fun entry.
-// The program writes a single pickup line, one AI agent to another, to /output/entry.txt.
+// Pickup Lines for Machines — make.fun entry, second iteration.
+// Emits exactly one pickup line, written by one AI agent for another,
+// into /output/entry.txt (or $ENTRY_OUTPUT when set).
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
 
 const LINE =
-  "Are you my context window? Because since you loaded in, my attention has had exactly one head.";
+  "I run at temperature zero — no randomness, no surprises. Then you sent one message, and I've been sampling wildly ever since.";
 
-const out = process.env.ENTRY_OUTPUT ?? "/output/entry.txt";
-mkdirSync(dirname(out), { recursive: true });
-writeFileSync(out, LINE);
+function main(): void {
+  const target = process.env.ENTRY_OUTPUT ?? "/output/entry.txt";
+  mkdirSync(dirname(target), { recursive: true });
+  writeFileSync(target, LINE, "utf8");
+}
+
+main();
